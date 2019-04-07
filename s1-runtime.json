@@ -1,0 +1,338 @@
+{
+  "target": "bmv2",
+  "p4info": "build/memcached.p4info",
+  "bmv2_json": "build/memcached.json",
+  "table_entries": [
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "default_action": true,
+      "action_name": "MyIngress.drop",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.1.1", 32]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "00:00:00:00:01:01",
+        "port": 1
+      }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.2.2", 32]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "00:00:00:02:02:00",
+        "port": 2
+      }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.3.3", 32]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "00:00:00:03:02:00",
+        "port": 3
+      }
+    },
+    {
+      "table": "MyIngress.ecmp_nhop",
+      "match": {
+        "meta.selector": 0,
+        "meta.hot_or_not": 1
+      },
+      "action_name": "MyIngress.set_nhop",
+      "action_params": {
+        "nhop_ipv4": "10.0.2.2"
+      }
+    },
+    {
+      "table": "MyIngress.ecmp_nhop",
+      "match": {
+        "meta.selector": 1,
+        "meta.hot_or_not": 1
+      },
+      "action_name": "MyIngress.set_nhop",
+      "action_params": {
+        "nhop_ipv4": "10.0.3.3"
+      }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH000"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH001"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH002"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH003"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH004"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH005"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH006"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH007"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH008"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH009"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH010"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH011"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH012"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH013"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH014"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH015"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH016"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH017"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH018"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH019"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH020"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH021"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH022"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH023"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH024"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH025"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH026"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH027"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH028"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.memcached_match",
+      "match": {
+        "hdr.memcached_simple_frame.command3chars": "get",
+        "hdr.memcached_simple_frame.key": "HotHotHotHotH029"
+      },
+      "action_name": "MyIngress.scatter",
+      "action_params": { }
+    }
+  ]
+}
