@@ -1,7 +1,7 @@
 import MBalancer
 from multiprocessing import Process
 
-NUM_OF_HOSTS = 4
+NUM_OF_HOSTS = 1
 NUM_OF_SERVER_KEYS = 1000
 NUM_OF_HOT_KEYS = 10
 HOT_KEYS_RATIO = float(NUM_OF_HOT_KEYS) / NUM_OF_SERVER_KEYS
