@@ -11,8 +11,8 @@ class MBalancer(object):
     def __init__(self, server_ips, number_of_keys, hot_keys_fraction, timeout):
         self.servers = server_ips
         self.client  = memcached_udp.Client([(server_ip, self.MEMCACHED_PORT) for server_ip in server_ips], response_timeout=timeout)
-        # self.client1 = memcached_udp.Client([(server_ips[0], self.MEMCACHED_PORT)], response_timeout=timeout)
-        # self.client2 = memcached_udp.Client([(server_ips[1], self.MEMCACHED_PORT)], response_timeout=timeout)
+        self.client1 = memcached_udp.Client([(server_ips[0], self.MEMCACHED_PORT)], response_timeout=timeout)
+        self.client2 = memcached_udp.Client([(server_ips[1], self.MEMCACHED_PORT)], response_timeout=timeout)
         self.number_of_keys = number_of_keys
         # hot keys
         self.hot_keys = [("Hot"*self.KEY_LENGTH)[:self.KEY_LENGTH - 3] + "{:03d}".format(i) for i in range(int(number_of_keys * hot_keys_fraction))]
